@@ -5,9 +5,13 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 
-export default function Page1({ setFavoriteCandidate, setHappyWithProgress }) {
+export default function Page1({
+  favoriteCandidate,
+  happyWithProgress,
+  setFavoriteCandidate,
+  setHappyWithProgress
+}) {
   const candidates = ["Johnny Bravo", "Satoshi Nakamoto", "Thanos"];
   const happies = [
     "Very unhappy",
@@ -34,10 +38,12 @@ export default function Page1({ setFavoriteCandidate, setHappyWithProgress }) {
         <RadioGroup
           aria-label="candidate"
           name="candidate"
+          defaultValue={favoriteCandidate}
           onChange={onChangeCandidate}
         >
-          {candidates.map(candidate => (
+          {candidates.map((candidate, i) => (
             <FormControlLabel
+              key={i}
               value={candidate}
               control={<Radio color="primary" />}
               label={candidate}
@@ -50,9 +56,15 @@ export default function Page1({ setFavoriteCandidate, setHappyWithProgress }) {
         <Typography component="p">
           How happy are you with the current progress?
         </Typography>
-        <RadioGroup aria-label="happy" name="happy" onChange={onChangeHappy}>
-          {happies.map(happy => (
+        <RadioGroup
+          aria-label="happy"
+          name="happy"
+          defaultValue={happyWithProgress}
+          onChange={onChangeHappy}
+        >
+          {happies.map((happy, i) => (
             <FormControlLabel
+              key={i}
               value={happy}
               control={<Radio color="primary" />}
               label={happy}

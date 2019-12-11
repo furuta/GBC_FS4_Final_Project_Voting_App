@@ -1,9 +1,5 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
@@ -25,31 +21,77 @@ export default function Voting() {
   const [temperature, setTemperature] = React.useState(null);
 
   const disabledPrevious = () => {
-    return true;
+    switch (page.toString()) {
+      case "1":
+        return true;
+      case "2":
+        return false;
+      case "3":
+        return false;
+      default:
+        return;
+    }
   };
   const disabledNext = () => {
-    return !favoriteCandidate || !happyWithProgress;
+    switch (page.toString()) {
+      case "1":
+        return !favoriteCandidate || !happyWithProgress;
+      case "2":
+        return !birthday || !province;
+      case "3":
+        return temperature === null;
+      default:
+        return;
+    }
+  };
+  const onClickPrevious = e => {
+    switch (page.toString()) {
+      case "2":
+        history.push("/voting/1");
+        break;
+      case "3":
+        history.push("/voting/2");
+        break;
+      default:
+        break;
+    }
+  };
+  const onClickNext = e => {
+    switch (page.toString()) {
+      case "1":
+        history.push("/voting/2");
+        break;
+      case "2":
+        history.push("/voting/3");
+        break;
+      case "3":
+        history.push("/voting/summary");
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <Grid container={true} direction="column">
-      {page == "1" && (
+      {page === "1" && (
         <Page1
+          favoriteCandidate={favoriteCandidate}
+          happyWithProgress={happyWithProgress}
           setFavoriteCandidate={setFavoriteCandidate}
           setHappyWithProgress={setHappyWithProgress}
         />
       )}
-      {page == "2" && <Page2 />}
-      {page == "3" && <Page3 />}
-      {page == "summary" && <Summary />}
+      {page === "2" && <Page2 />}
+      {page === "3" && <Page3 />}
+      {page === "summary" && <Summary />}
       <Box m={2} />
       <Divider />
-      <Grid item={true} direction="row">
-        <Button disabled={disabledPrevious()}>PREVIOUS</Button>
-        <Button
-          disabled={disabledNext()}
-          onClick={e => history.push("/voting/2")}
-        >
+      <Grid item={true}>
+        <Button disabled={disabledPrevious()} onClick={onClickPrevious}>
+          PREVIOUS
+        </Button>
+        <Button disabled={disabledNext()} onClick={e => onClickNext(e)}>
           NEXT
         </Button>
       </Grid>
