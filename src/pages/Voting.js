@@ -17,7 +17,7 @@ export default function Voting() {
   const [favoriteCandidate, setFavoriteCandidate] = React.useState(null);
   const [happyWithProgress, setHappyWithProgress] = React.useState(null);
   const [birthday, setBirthday] = React.useState(null);
-  const [province, setProvince] = React.useState(null);
+  const [province, setProvince] = React.useState('');
   const [temperature, setTemperature] = React.useState(null);
 
   const disabledPrevious = () => {
@@ -82,7 +82,9 @@ export default function Voting() {
           setHappyWithProgress={setHappyWithProgress}
         />
       )}
-      {page === "2" && <Page2 />}
+      {page === "2" && <Page2 
+        birthday={birthday} setBirthday={setBirthday} 
+        province={province} setProvince={setProvince}/>}
       {page === "3" && <Page3 />}
       {page === "summary" && <Summary />}
       <Box m={2} />
