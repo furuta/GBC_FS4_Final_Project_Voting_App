@@ -8,6 +8,7 @@ import sendTransaction from "../utils/sendTransaction";
 import saveStore from "../utils/saveStore";
 import { PROVINCES, DONATION_ADDRESS, HAPPINESS_LABEL } from "../constants";
 import { isReferenced } from "@babel/types";
+import { useHistory } from "react-router-dom";
 
 export default function SummaryPage({
   favoriteCandidate,
@@ -18,6 +19,7 @@ export default function SummaryPage({
 }) {
   const [candidateAmt, setCandidateAmt] = React.useState(0);
   const [charityAmt, setCharityAmt] = React.useState(0);
+  const history = useHistory();
   let provinces = {};
   PROVINCES.map(v => (provinces[v.code] = v.name));
 
@@ -114,7 +116,8 @@ export default function SummaryPage({
           {temperature + "°C"}
         </Typography>
       </Grid>
-      <Box m={3} />
+      
+      <Box m={2} />
       <Grid item={true}>
         <TextField
           onChange={toCandidate}
@@ -122,28 +125,45 @@ export default function SummaryPage({
           label="Donate ETH to your candidate (optional)"
           variant="outlined"
           value={candidateAmt}
+          fullWidth
         />
+      </Grid>
+      <Box m={1} />
+      <Grid item={true}>
         <TextField
           onChange={toCharity}
           id="outlined-basic"
           label="Donate ETH to your charity (optional)"
           variant="outlined"
           value={charityAmt}
+          fullWidth
         />
       </Grid>
       <Box m={2} />
-      <Grid item={true}>
-        <Button
-          onClick={submission}
-          disabled={isValid()}
-          variant="contained"
-          color="primary"
-        >
-          CAST VOTES
-        </Button>
-        <Button variant="outlined" onClick={history.push("/voting/3")}>
-          GO BACK
-        </Button>
+      <Grid container={true} direction="column" alignItems="center">
+        <Grid item={true}>
+          <Button
+            onClick={submission}
+            disabled={isValid()}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            CAST VOTES
+          </Button>
+        </Grid>
+        <Box m={1} />
+        <Grid item={true}>
+          <Button
+            variant="outlined"
+            onClick={e => {
+              history.push("/voting/3");
+            }}
+            size="small"
+          >
+            GO BACK
+          </Button>
+        </Grid>
       </Grid>
     </Grid>
   );
