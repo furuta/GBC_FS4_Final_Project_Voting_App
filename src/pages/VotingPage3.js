@@ -1,25 +1,11 @@
 import React from "react";
-import { useHistory, Link as RouterLink } from "react-router-dom";
 import "../App.css";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
 import Slider from "@material-ui/core/Slider";
-import { makeStyles } from "@material-ui/core/styles";
 
 export default function Page3({ temperature, setTemperature }) {
-  const history = useHistory();
-  const useStyles = makeStyles(theme => ({
-    root: {
-      width: 300
-    },
-    margin: {
-      height: theme.spacing(3)
-    }
-  }));
-
   const marks = [
     {
       value: 0,

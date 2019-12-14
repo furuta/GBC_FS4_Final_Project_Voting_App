@@ -18,7 +18,6 @@ export default function saveStore({
 
 function addVotes(collectionName, target) {
   target = target.toString();
-  console.log(target);
   let data = {
     votes: 1
   };
@@ -26,13 +25,9 @@ function addVotes(collectionName, target) {
     .doc(target)
     .get()
     .then(doc => {
-      if (!doc.exists) {
-        console.log("No such document!");
-      } else {
-        console.log(doc.data());
+      if (doc.exists) {
         data.votes += doc.data().votes;
       }
-      console.log(data);
       db.collection(collectionName)
         .doc(target)
         .set(data);

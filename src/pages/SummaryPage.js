@@ -4,10 +4,10 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
+import DoneAllIcon from "@material-ui/icons/DoneAll";
 import sendTransaction from "../utils/sendTransaction";
 import saveStore from "../utils/saveStore";
 import { PROVINCES, DONATION_ADDRESS, HAPPINESS_LABEL } from "../constants";
-import { isReferenced } from "@babel/types";
 import { useHistory } from "react-router-dom";
 
 export default function SummaryPage({
@@ -149,6 +149,7 @@ export default function SummaryPage({
             color="primary"
             size="large"
           >
+            <DoneAllIcon />
             CAST VOTES
           </Button>
         </Grid>

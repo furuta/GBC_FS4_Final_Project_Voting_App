@@ -4,11 +4,10 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default function LoginPage({ isLoggedIn }) {
   const [newUserName, setNewUserName] = React.useState("");
-  const history = useHistory();
   const redirectUrl = "/voting/1";
 
   const saveName = e => {

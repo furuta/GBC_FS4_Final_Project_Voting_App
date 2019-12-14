@@ -48,7 +48,7 @@ export default function Voting() {
     if (page.toString() === "3") {
       return "primary";
     }
-    return "";
+    return "default";
   };
   const onClickPrevious = e => {
     switch (page.toString()) {
