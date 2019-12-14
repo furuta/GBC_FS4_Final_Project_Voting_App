@@ -5,7 +5,6 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { useParams, useHistory } from "react-router-dom";
 
-
 import Page1 from "./VotingPage1";
 import Page2 from "./VotingPage2";
 import Page3 from "./VotingPage3";
@@ -18,7 +17,7 @@ export default function Voting() {
   const [favoriteCandidate, setFavoriteCandidate] = React.useState(null);
   const [happyWithProgress, setHappyWithProgress] = React.useState(null);
   const [birthday, setBirthday] = React.useState(null);
-  const [province, setProvince] = React.useState('');
+  const [province, setProvince] = React.useState("");
   const [temperature, setTemperature] = React.useState(null);
 
   const disabledPrevious = () => {
@@ -40,10 +39,16 @@ export default function Voting() {
       case "2":
         return !birthday || !province;
       case "3":
-        return false;//temperature === null;
+        return false; //temperature === null;
       default:
         return;
     }
+  };
+  const colorNext = () => {
+    if (page.toString() === "3") {
+      return "primary";
+    }
+    return "";
   };
   const onClickPrevious = e => {
     switch (page.toString()) {
@@ -52,6 +57,9 @@ export default function Voting() {
         break;
       case "3":
         history.push("/voting/2");
+        break;
+      case "summary":
+        history.push("/voting/3");
         break;
       default:
         break;
@@ -83,21 +91,44 @@ export default function Voting() {
           setHappyWithProgress={setHappyWithProgress}
         />
       )}
-      {page === "2" && <Page2 
-        birthday={birthday} setBirthday={setBirthday} 
-        province={province} setProvince={setProvince}/>}
-      {page === "3" && <Page3
-        temperature={temperature} setTemperature={setTemperature} />}
-      {page === "summary" && <SummaryPage
-        favoriteCandidate={favoriteCandidate} birthday={birthday}
-        province={province} happyWithProgress={happyWithProgress} temperature={temperature} />}
+      {page === "2" && (
+        <Page2
+          birthday={birthday}
+          setBirthday={setBirthday}
+          province={province}
+          setProvince={setProvince}
+        />
+      )}
+      {page === "3" && (
+        <Page3 temperature={temperature} setTemperature={setTemperature} />
+      )}
+      {page === "summary" && (
+        <SummaryPage
+          favoriteCandidate={favoriteCandidate}
+          birthday={birthday}
+          province={province}
+          happyWithProgress={happyWithProgress}
+          temperature={temperature}
+        />
+      )}
       <Box m={2} />
       <Divider />
-      <Grid item={true}>
-        <Button disabled={disabledPrevious()} onClick={onClickPrevious}>
+      <Box m={1} />
+      <Grid container={true} direction="row" justify="space-between">
+        <Button
+          disabled={disabledPrevious()}
+          onClick={onClickPrevious}
+          variant="contained"
+        >
           PREVIOUS
         </Button>
-        <Button disabled={disabledNext()} onClick={e => onClickNext(e)}>
+
+        <Button
+          disabled={disabledNext()}
+          onClick={e => onClickNext(e)}
+          variant="contained"
+          color={colorNext()}
+        >
           NEXT
         </Button>
       </Grid>

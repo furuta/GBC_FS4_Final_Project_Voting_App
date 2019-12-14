@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory, Link as RouterLink } from 'react-router-dom';
+import { useHistory, Link as RouterLink } from "react-router-dom";
 import "../App.css";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
@@ -10,9 +10,7 @@ import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
 import { temperature, setTemperature } from "../constants";
 
-
-
-export default function Page3({temperature, setTemperature}){
+export default function Page3({ temperature, setTemperature }) {
   const history = useHistory();
   const useStyles = makeStyles(theme => ({
     root: {
@@ -60,11 +58,11 @@ export default function Page3({temperature, setTemperature}){
       <Grid container={true} direction="column">
         <Grid item={true}>
           <Typography id="discrete-slider-always" gutterBottom>
-          <h2>Temperature</h2>
+            <h2>Temperature</h2>
           </Typography>
         </Grid>
         <Box m={4} />
-        <Grid item={true} >
+        <Grid item={true}>
           <Slider
             defaultValue={null}
             getAriaValueText={value => setTemperature(value)}
@@ -74,13 +72,9 @@ export default function Page3({temperature, setTemperature}){
             marks={marks}
           />
         </Grid>
-
       </Grid>
-      
 
-      
-      
-        {/* <Grid containerspacing={1} alignContent="right">
+      {/* <Grid containerspacing={1} alignContent="right">
           <Box m={1} />
           <Button
             disabled={!temperature}
@@ -106,9 +100,6 @@ export default function Page3({temperature, setTemperature}){
             Previous
           </Button>
         </Grid> */}
-      
     </div>
   );
 }
-
-
