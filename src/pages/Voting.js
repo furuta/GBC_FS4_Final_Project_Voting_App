@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Divider from "@material-ui/core/Divider";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 
 import Page1 from "./VotingPage1";
 import Page2 from "./VotingPage2";
@@ -81,6 +81,14 @@ export default function Voting() {
     }
   };
 
+  const location = useLocation();
+  const showFooter = () => {
+    if (location.pathname === "/voting/summary") {
+      return false;
+    }
+    return true;
+  };
+
   return (
     <Grid container={true} direction="column">
       {page === "1" && (
@@ -111,27 +119,31 @@ export default function Voting() {
           temperature={temperature}
         />
       )}
-      <Box m={2} />
-      <Divider />
-      <Box m={1} />
-      <Grid container={true} direction="row" justify="space-between">
-        <Button
-          disabled={disabledPrevious()}
-          onClick={onClickPrevious}
-          variant="contained"
-        >
-          PREVIOUS
-        </Button>
+      {showFooter() && (
+        <div>
+          <Box m={2} />
+          <Divider />
+          <Box m={1} />
+          <Grid container={true} direction="row" justify="space-between">
+            <Button
+              disabled={disabledPrevious()}
+              onClick={onClickPrevious}
+              variant="contained"
+            >
+              PREVIOUS
+            </Button>
 
-        <Button
-          disabled={disabledNext()}
-          onClick={e => onClickNext(e)}
-          variant="contained"
-          color={colorNext()}
-        >
-          NEXT
-        </Button>
-      </Grid>
+            <Button
+              disabled={disabledNext()}
+              onClick={e => onClickNext(e)}
+              variant="contained"
+              color={colorNext()}
+            >
+              NEXT
+            </Button>
+          </Grid>
+        </div>
+      )}
     </Grid>
   );
 }

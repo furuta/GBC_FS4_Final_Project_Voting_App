@@ -5,6 +5,7 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import sendTransaction from "../utils/sendTransaction";
+import saveStore from "../utils/saveStore";
 import { PROVINCES, DONATION_ADDRESS, HAPPINESS_LABEL } from "../constants";
 import { isReferenced } from "@babel/types";
 
@@ -44,6 +45,13 @@ export default function SummaryPage({
       toAddress: DONATION_ADDRESS,
       msg: message
     });
+    saveStore({
+      candidate: favoriteCandidate,
+      birthday: birthday,
+      happiness: happyWithProgress,
+      province: province,
+      temperature: temperature
+    });
   };
 
   const isValid = () => {
@@ -65,38 +73,46 @@ export default function SummaryPage({
   return (
     <Grid container={true} direction="column">
       <Grid item={true}>
-        <Typography component="h3">Summary Page</Typography>
+        <Typography variant="h3">Summary Page</Typography>
       </Grid>
       <Box m={1} />
       <Grid item={true}>
         <Typography component="p">Who is your favorite candidate?</Typography>
-        <Typography component="p">{favoriteCandidate}</Typography>
+        <Typography component="p" color="primary">
+          {favoriteCandidate}
+        </Typography>
       </Grid>
       <Box m={2} />
       <Grid item={true}>
         <Typography component="p">
           How happy are you with the current progress?
         </Typography>
-        <Typography component="p">
+        <Typography component="p" color="primary">
           {HAPPINESS_LABEL[happyWithProgress]}
         </Typography>
       </Grid>
       <Box m={2} />
       <Grid item={true}>
         <Typography component="p">When is your birthday?</Typography>
-        <Typography component="p">{birthdayToString()}</Typography>
+        <Typography component="p" color="primary">
+          {birthdayToString()}
+        </Typography>
       </Grid>
       <Box m={2} />
       <Grid item={true}>
         <Typography component="p">Which province do you reside in?</Typography>
-        <Typography component="p">{provinces[province]}</Typography>
+        <Typography component="p" color="primary">
+          {provinces[province]}
+        </Typography>
       </Grid>
       <Box m={2} />
       <Grid item={true}>
         <Typography component="p">
           What is your ideal room temperature?
         </Typography>
-        <Typography component="p">{temperature + "°C"}</Typography>
+        <Typography component="p" color="primary">
+          {temperature + "°C"}
+        </Typography>
       </Grid>
       <Box m={3} />
       <Grid item={true}>
@@ -117,9 +133,15 @@ export default function SummaryPage({
       </Grid>
       <Box m={2} />
       <Grid item={true}>
-        <Button onClick={submission} disabled={isValid()}>
-          Submit
+        <Button
+          onClick={submission}
+          disabled={isValid()}
+          variant="contained"
+          color="primary"
+        >
+          CAST VOTES
         </Button>
+        <Button variant="outlined">GO BACK</Button>
       </Grid>
     </Grid>
   );
