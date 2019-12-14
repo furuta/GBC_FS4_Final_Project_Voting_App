@@ -74,7 +74,7 @@ function ProvinceSelect({ province, setProvince }) {
     <FormControl variant="outlined" fullWidth required>
       <Select onChange={handleChange} value={province}>
         {PROVINCES.map((item, index) => (
-          <MenuItem key={index} value={item.name}>
+          <MenuItem key={item.code} value={item.code}>
             {item.name}
           </MenuItem>
         ))}
