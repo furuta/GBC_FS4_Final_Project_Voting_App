@@ -15,9 +15,11 @@ export default function Page1({
 }) {
   const onChangeCandidate = e => {
     setFavoriteCandidate(e.target.value);
+    
   };
   const onChangeHappy = e => {
     setHappyWithProgress(e.target.value);
+    
   };
   return (
     <Grid container={true} direction="column">

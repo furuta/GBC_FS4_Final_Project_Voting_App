@@ -26,6 +26,7 @@ export default function Page2({birthday, setBirthday, province, setProvince}){
         <Typography component="p">When is your birthday?</Typography>
         <BirthayDate birthday={birthday} 
         setBirthday={setBirthday}/>
+        
       </Grid>
       <Box m={2} />
       <Grid item={true} >
@@ -46,6 +47,7 @@ function BirthayDate({birthday, setBirthday}) {
    const handleDateChange = date => {
      
      setBirthday(date);
+     console.log(birthday);
   };
 
   return (
@@ -79,7 +81,7 @@ function ProvinceSelect({province, setProvince}) {
     const handleChange = event => {
       
       setProvince(event.target.value)
-     
+      console.log(province);
     }
   
   return (

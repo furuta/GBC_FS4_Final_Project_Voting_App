@@ -5,10 +5,11 @@ import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import { useParams, useHistory } from "react-router-dom";
 
+
 import Page1 from "./VotingPage1";
 import Page2 from "./VotingPage2";
 import Page3 from "./VotingPage3";
-import Summary from "./SummaryPage";
+import SummaryPage from "./SummaryPage";
 
 export default function Voting() {
   let { page } = useParams();
@@ -39,7 +40,7 @@ export default function Voting() {
       case "2":
         return !birthday || !province;
       case "3":
-        return temperature === null;
+        return false;//temperature === null;
       default:
         return;
     }
@@ -86,7 +87,9 @@ export default function Voting() {
         birthday={birthday} setBirthday={setBirthday} 
         province={province} setProvince={setProvince}/>}
       {page === "3" && <Page3 />}
-      {page === "summary" && <Summary />}
+      {page === "summary" && <SummaryPage
+        favoriteCandidate={favoriteCandidate} birthday={birthday}
+        province={province} happyWithProgress={happyWithProgress} temperature={temperature} />}
       <Box m={2} />
       <Divider />
       <Grid item={true}>

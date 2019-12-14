@@ -44,7 +44,7 @@ import Login from "./pages/LoginPage";
 import Voting from "./pages/Voting";
 import Results from "./pages/ResultsPage";
 
-const NETWORK = "goerli";
+//const NETWORK = "goerli";
 
 export default function App() {
   return (
