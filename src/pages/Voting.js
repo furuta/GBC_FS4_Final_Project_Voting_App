@@ -86,7 +86,8 @@ export default function Voting() {
       {page === "2" && <Page2 
         birthday={birthday} setBirthday={setBirthday} 
         province={province} setProvince={setProvince}/>}
-      {page === "3" && <Page3 />}
+      {page === "3" && <Page3
+        temperature={temperature} setTemperature={setTemperature} />}
       {page === "summary" && <SummaryPage
         favoriteCandidate={favoriteCandidate} birthday={birthday}
         province={province} happyWithProgress={happyWithProgress} temperature={temperature} />}

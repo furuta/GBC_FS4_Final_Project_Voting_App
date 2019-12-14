@@ -61,29 +61,29 @@ export default function SummaryPage({ favoriteCandidate, happyWithProgress, birt
         <Typography component="p">How happy are you with the current progress?</Typography>
         <Typography component="p">{HAPPINESS_LABEL[happyWithProgress]}</Typography>
       </Grid>
-      <Box m={3} />
+      <Box m={2} />
       <Grid item={true} >
         <Typography component="p">When is your birthday?</Typography>
         {/* <Typography component="p">{birthday}</Typography> */}
       </Grid>
-      <Box m={4} />
+      <Box m={2} />
       <Grid item={true} >
         <Typography component="p">Which province do you reside in?</Typography>
         <Typography component="p">{province}</Typography>
       </Grid>
-      <Box m={5} />
+      <Box m={2} />
       <Grid item={true} >
         <Typography component="p">What is your ideal room temperature?</Typography>
-        <Typography component="p">{temperature}</Typography>
+        <Typography component="p">{temperature + "°C"}</Typography>
       </Grid>
-      <Box m={6} />
+      <Box m={3} />
       <Grid item={true} >
         
           <TextField onChange={toCandidate} id="outlined-basic" label="Donate ETH to your candidate (optional)" variant="outlined" value={candidateAmt}/>
           <TextField onChange={toCharity} id="outlined-basic" label="Donate ETH to your charity (optional)" variant="outlined" value={charityAmt} /> 
         
       </Grid>
-      <Box m={7} />
+      <Box m={2} />
       <Grid item={true} >
         
           <Button onClick={submission} disabled={isValid()}>Submit</Button>

@@ -1,12 +1,7 @@
 import React from "react";
+import { useHistory, Link as RouterLink } from 'react-router-dom';
 import "../App.css";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
-import Grid from "@material-ui/core/Grid";
-import Link from "@material-ui/core/Link";
-import Slider from "@material-ui/core/Slider";
-import { makeStyles } from "@material-ui/core/styles";import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
@@ -18,10 +13,6 @@ import { temperature, setTemperature } from "../constants";
 
 
 export default function Page3({temperature, setTemperature}){
-  return <div>VotingPage3</div>;
-}
-
-function temperature(props) {
   const history = useHistory();
   const useStyles = makeStyles(theme => ({
     root: {
@@ -53,39 +44,46 @@ function temperature(props) {
 
   const onClickNext = () => {
     history.push("/voting/SummaryPage");
-    window.localStorage.setItem("temperature", props.temperature);
+    window.localStorage.setItem("temperature", temperature);
   };
   const onClickPrev = () => {
     history.goBack();
   };
 
-  function setTemperature(value) {
+  function setTemp(value) {
+    console.log(value);
     return marks.findIndex(mark => mark.value === value) + 1;
   }
   const classes = useStyles();
   return (
     <div className={classes.margin}>
-      <Link to="/" component={RouterLink}>
-        Back to start
-      </Link>
-      <Typography id="discrete-slider-always" gutterBottom>
-        <h2>Temperature</h2>
-      </Typography>
-      <Box m={10} />
+      <Grid container={true} direction="column">
+        <Grid item={true}>
+          <Typography id="discrete-slider-always" gutterBottom>
+          <h2>Temperature</h2>
+          </Typography>
+        </Grid>
+        <Box m={4} />
+        <Grid item={true} >
+          <Slider
+            defaultValue={null}
+            getAriaValueText={value => setTemperature(value)}
+            aria-labelledby="discrete-slider-always"
+            step={1}
+            valueLabelDisplay="on"
+            marks={marks}
+          />
+        </Grid>
 
-      <Slider
-        defaultValue={null}
-        getAriaValueText={value => props.setTemperature(value)}
-        aria-labelledby="discrete-slider-always"
-        step={1}
-        valueLabelDisplay="on"
-        marks={marks}
-      />
-      <div>
-        <Grid containerspacing={1} alignContent="right">
+      </Grid>
+      
+
+      
+      
+        {/* <Grid containerspacing={1} alignContent="right">
           <Box m={1} />
           <Button
-            disabled={!props.temperature}
+            disabled={!temperature}
             variant="contained"
             color="primary"
             onClick={onClickNext}
@@ -100,17 +98,17 @@ function temperature(props) {
           <Box m={1} />
           <Button
             align
-            disabled={props.temperature}
+            disabled={temperature}
             variant="contained"
             color="primary"
             onClick={onClickPrev}
           >
             Previous
           </Button>
-        </Grid>
-      </div>
+        </Grid> */}
+      
     </div>
   );
 }
-)
+
 
