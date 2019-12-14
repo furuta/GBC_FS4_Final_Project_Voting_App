@@ -13,3 +13,8 @@ Follow the instructions as described here: https://www.notion.so/Project-Voting-
 2. Pawel Leja: 101232470
 3. Nrup Patel 101219018
 4. Andres Ponton 101216141
+
+## Attention
+Login page is not 100% functional.
+When you type name and push login button, it does not move to the next section automatically.
+Please refresh your browser in order to continue.
