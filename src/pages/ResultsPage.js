@@ -44,6 +44,7 @@ export default function ResultsPage() {
       const label = CANDIDATE_NAME[doc.id];
       results[label] = doc.data().votes;
     });
+    //TODO: Sort items by key
     setCandidates(results);
   };
 
@@ -79,6 +80,7 @@ export default function ResultsPage() {
       const label = HAPPINESS_LABEL[doc.id];
       results[label] = doc.data().votes;
     });
+    //TODO: Sort items by key
     setHappiness(results);
   };
   const aggregateProvince = snapshot => {
@@ -89,6 +91,7 @@ export default function ResultsPage() {
       const label = provinces[doc.id];
       results[label] = doc.data().votes;
     });
+    //TODO: Sort items by key
     setResideProvince(results);
   };
   const aggregateTemperature = snapshot => {
@@ -96,6 +99,7 @@ export default function ResultsPage() {
     snapshot.forEach(doc => {
       results[`${doc.id}℃`] = doc.data().votes;
     });
+    //TODO: Sort items by key
     setTemperature(results);
   };
 
