@@ -67,7 +67,6 @@ function Solution() {
 
   React.useEffect(() => {
     const onStorage = e => {
-      console.log("aaa");
       setUserName(window.localStorage.getItem("userName"));
     };
 
@@ -111,7 +110,6 @@ function Solution() {
 
 const withLoggedInState = Component => {
   return function NewComponent({ isLoggedIn, ...props }) {
-    console.log(isLoggedIn);
     return (
       <div>
         {!isLoggedIn && <Redirect to="/" />}

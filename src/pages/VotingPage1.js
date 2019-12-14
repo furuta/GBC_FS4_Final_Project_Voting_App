@@ -5,6 +5,7 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Box from "@material-ui/core/Box";
+import { CANDIDATE_NAME, HAPPINESS_LABEL } from "../constants";
 
 export default function Page1({
   favoriteCandidate,
@@ -12,15 +13,6 @@ export default function Page1({
   setFavoriteCandidate,
   setHappyWithProgress
 }) {
-  const candidates = ["Johnny Bravo", "Satoshi Nakamoto", "Thanos"];
-  const happies = [
-    "Very unhappy",
-    "Somewhat unhappy",
-    "Neutral",
-    "Somewhat happy",
-    "Very happy"
-  ];
-
   const onChangeCandidate = e => {
     setFavoriteCandidate(e.target.value);
   };
@@ -30,7 +22,7 @@ export default function Page1({
   return (
     <Grid container={true} direction="column">
       <Grid item={true}>
-        <Typography component="h2">Part 1</Typography>
+        <Typography variant="h3">Part 1</Typography>
       </Grid>
       <Box m={1} />
       <Grid item={true}>
@@ -41,12 +33,12 @@ export default function Page1({
           defaultValue={favoriteCandidate}
           onChange={onChangeCandidate}
         >
-          {candidates.map((candidate, i) => (
+          {Object.keys(CANDIDATE_NAME).map(key => (
             <FormControlLabel
-              key={i}
-              value={candidate}
+              key={key}
+              value={key}
               control={<Radio color="primary" />}
-              label={candidate}
+              label={CANDIDATE_NAME[key]}
             />
           ))}
         </RadioGroup>
@@ -62,12 +54,12 @@ export default function Page1({
           defaultValue={happyWithProgress}
           onChange={onChangeHappy}
         >
-          {happies.map((happy, i) => (
+          {Object.keys(HAPPINESS_LABEL).map(key => (
             <FormControlLabel
-              key={i}
-              value={happy}
+              key={key}
+              value={key}
               control={<Radio color="primary" />}
-              label={happy}
+              label={HAPPINESS_LABEL[key]}
             />
           ))}
         </RadioGroup>
