@@ -75,15 +75,28 @@ function Solution() {
       window.removeEventListener("storage", onStorage);
     };
   }, []);
+
+  const location = useLocation();
+  const showBackLink = () => {
+    if (
+      location.pathname === "/voting/summary" ||
+      location.pathname === "/results"
+    ) {
+      return false;
+    }
+    return true;
+  };
   return (
     <div>
       <Grid container={true} justify="space-between">
         <Typography component="h1" gutterBottom={true}>
           Cast Your Vote
         </Typography>
-        <Link to="/" component={RouterLink}>
-          Back to start
-        </Link>
+        {showBackLink() && (
+          <Link to="/" component={RouterLink}>
+            Back to start
+          </Link>
+        )}
       </Grid>
       <Switch>
         <LoggedInRouter
