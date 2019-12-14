@@ -8,7 +8,6 @@ import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
 import Slider from "@material-ui/core/Slider";
 import { makeStyles } from "@material-ui/core/styles";
-import { temperature, setTemperature } from "../constants";
 
 export default function Page3({ temperature, setTemperature }) {
   const history = useHistory();
@@ -40,66 +39,27 @@ export default function Page3({ temperature, setTemperature }) {
     }
   ];
 
-  const onClickNext = () => {
-    history.push("/voting/SummaryPage");
-    window.localStorage.setItem("temperature", temperature);
-  };
-  const onClickPrev = () => {
-    history.goBack();
-  };
-
-  function setTemp(value) {
-    console.log(value);
-    return marks.findIndex(mark => mark.value === value) + 1;
-  }
-  const classes = useStyles();
   return (
-    <div className={classes.margin}>
-      <Grid container={true} direction="column">
-        <Grid item={true}>
-          <Typography id="discrete-slider-always" gutterBottom>
-            <h2>Temperature</h2>
-          </Typography>
-        </Grid>
-        <Box m={4} />
-        <Grid item={true}>
-          <Slider
-            defaultValue={null}
-            getAriaValueText={value => setTemperature(value)}
-            aria-labelledby="discrete-slider-always"
-            step={1}
-            valueLabelDisplay="on"
-            marks={marks}
-          />
-        </Grid>
+    <Grid container={true} direction="column">
+      <Grid item={true}>
+        <Typography variant="h3">Part 3</Typography>
       </Grid>
-
-      {/* <Grid containerspacing={1} alignContent="right">
-          <Box m={1} />
-          <Button
-            disabled={!temperature}
-            variant="contained"
-            color="primary"
-            onClick={onClickNext}
-          >
-            Next
-          </Button>
-        </Grid>
-      </div>
-
-      <div>
-        <Grid alignItems="left">
-          <Box m={1} />
-          <Button
-            align
-            disabled={temperature}
-            variant="contained"
-            color="primary"
-            onClick={onClickPrev}
-          >
-            Previous
-          </Button>
-        </Grid> */}
-    </div>
+      <Grid item={true}>
+        <Typography id="discrete-slider-always" component="p" gutterBottom>
+          What is your ideal room temperature?
+        </Typography>
+      </Grid>
+      <Box m={4} />
+      <Grid item={true}>
+        <Slider
+          defaultValue={temperature}
+          getAriaValueText={value => setTemperature(value)}
+          aria-labelledby="discrete-slider-always"
+          step={1}
+          valueLabelDisplay="on"
+          marks={marks}
+        />
+      </Grid>
+    </Grid>
   );
 }

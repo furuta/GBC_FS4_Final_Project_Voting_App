@@ -18,7 +18,7 @@ export default function Voting() {
   const [happyWithProgress, setHappyWithProgress] = React.useState(null);
   const [birthday, setBirthday] = React.useState(null);
   const [province, setProvince] = React.useState("");
-  const [temperature, setTemperature] = React.useState(null);
+  const [temperature, setTemperature] = React.useState(0);
 
   const disabledPrevious = () => {
     switch (page.toString()) {
