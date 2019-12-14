@@ -141,7 +141,9 @@ export default function SummaryPage({
         >
           CAST VOTES
         </Button>
-        <Button variant="outlined">GO BACK</Button>
+        <Button variant="outlined" onClick={history.push("/voting/3")}>
+          GO BACK
+        </Button>
       </Grid>
     </Grid>
   );
